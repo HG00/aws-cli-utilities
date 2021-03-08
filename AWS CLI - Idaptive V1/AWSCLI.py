@@ -31,7 +31,7 @@ def get_environment(args):
         tenant = tenant + ".centrify.com"
     name = tenant.split(".")[0]
     tenant = "https://" + tenant
-    cert = "cacerts_" + name + ".pem"
+    cert = "/etc/ssl/certs"
     debug = args.debug
     env = environment.Environment(name, tenant, cert, debug)
     return env
