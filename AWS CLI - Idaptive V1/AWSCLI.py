@@ -13,16 +13,17 @@
 # limitations under the License.
 
 #Version 8.1
+from aws import assumerolesaml
+from config import environment
+from config import readconfig
 from core import auth
 from core import samlapp
-from aws import assumerolesaml
-import logging
-from config import readconfig
 from core import uprest
+import argparse
+import certifi
+import logging
 import re
 import sys
-import argparse
-from config import environment
 import traceback
 
 def get_environment(args):
@@ -31,7 +32,7 @@ def get_environment(args):
         tenant = tenant + ".centrify.com"
     name = tenant.split(".")[0]
     tenant = "https://" + tenant
-    cert = "/etc/ssl/certs"
+    cert = certifi.where()
     debug = args.debug
     env = environment.Environment(name, tenant, cert, debug)
     return env
